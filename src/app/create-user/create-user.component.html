@@ -1,0 +1,33 @@
+<div class="user-form-container">
+    <h2 i18n>Add New User</h2>
+    <div class="user-form">
+        <form [formGroup]="userForm">
+            <mat-form-field class="username-email">
+                <mat-label i18n>Username</mat-label>
+                <input matInput placeholder="Enter username.." formControlName="username" required [(ngModel)]="usernameToCheck" (ngModelChange)="checkIsUserTaken()">
+                <mat-error *ngIf="userForm.controls['username'].invalid" i18n="Username error message @@UsernameError">{{displayErrorMessage("username")}}</mat-error>
+            </mat-form-field>
+            <div class="firstname-lastname">
+                <mat-form-field class="names">
+                    <mat-label i18n>First Name</mat-label>
+                    <input matInput placeholder="Enter first name.." formControlName="firstName" required >
+                    <mat-error *ngIf="userForm.controls['firstName'].invalid" i18n="FirstName error message @@FirsNameError">{{displayErrorMessage("firstName")}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="names">
+                    <mat-label i18n>Last Name (Optional)</mat-label>
+                    <input matInput placeholder="Enter last name.." formControlName="lastName">
+                </mat-form-field>
+            </div>
+            <mat-form-field class="username-email">
+                <mat-label i18n>Email</mat-label>
+                <input matInput placeholder="Enter email.." formControlName="email" required >
+                <mat-error *ngIf="userForm.controls['username'].invalid" i18n="Email error message @@EmailError">{{displayErrorMessage("email")}}</mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="btn-container">
+        <button mat-button class="cancel-btn" (click)="cancelNewUser()" i18n>CANCEL</button>
+        <button *ngIf="userForm.valid" mat-button class="add-btn" (click)="addNewUser()" i18n>ADD NEW USER</button>
+        <button *ngIf="!userForm.valid" mat-button class="add-btn" (click)="addNewUser()" disabled i18n>ADD NEW USER</button>
+    </div>
+</div>

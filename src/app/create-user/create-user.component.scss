@@ -1,0 +1,49 @@
+.user-form-container {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    .user-form {
+        background-color: white;
+        border: thin solid lightgrey;
+        padding: 5px;
+        .username-email {
+            width: 100%;
+        }
+        .firstname-lastname {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .names {
+                width: 45%
+            }
+        }
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 5px;
+        .add-btn {
+            padding: 10px;
+            color: white;
+            background-color: #3C92C4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #DADADA;
+            color: white;
+            cursor: default;
+        }
+        .cancel-btn {
+            padding: 10px;
+            background-color: #DADADA;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}

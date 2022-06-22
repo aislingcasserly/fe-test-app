@@ -1,0 +1,54 @@
+<div class="user-list-container">
+  <div class="user-button-container">
+    <button mat-button class="new-user-button" (click)="createNewUser()" i18n>NEW USER</button>
+    <div class="user-dropdown">
+      <mat-select [(value)]="selectedPageSize" (click)="setPageSize(selectedPageSize)">
+        <mat-option value="10">10</mat-option>
+        <mat-option value="20">20</mat-option>
+        <mat-option value="50">50</mat-option>
+        <mat-option value="100">100</mat-option>
+        <mat-option value="200">200</mat-option>
+      </mat-select>
+      <div class="text"> rows</div>
+    </div>
+  </div>
+  <div class="user-list-table">
+    <table mat-table matSort #sortUserList="matSort" [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%">
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Username</th>
+        <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="full_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Full Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.first_name }} {{ element.last_name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="id_status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Status</th>
+        <td mat-cell *matCellDef="let element">
+          <a *ngIf="element.id_status==1" class="status-active" i18n>Active</a>
+          <a *ngIf="element.id_status==3" class="status-inactive" i18n>Inactive</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Date Created</th>
+        <td mat-cell *matCellDef="let element">{{ element.created_date | date:'yyyy/MM/d' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator class="paginator" showFirstLastButtons [pageSize]="selectedPageSize"
+      aria-label="Select page of users">
+    </mat-paginator>
+  </div>
+</div>
